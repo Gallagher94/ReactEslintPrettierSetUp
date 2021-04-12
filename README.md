@@ -1,70 +1,77 @@
-# Getting Started with Create React App
+# Getting Started with Eslint - Prettier in a Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Watch this video https://www.youtube.com/watch?v=GedOLszVOo4
 
-## Available Scripts
+Eslint Prettier Create React App VSCode Best Configuration Setup
 
-In the project directory, you can run:
+Have you ever wanted to configure Eslint to work correctly with Prettier and your Create React App? If so in this video you will learn the best settings to do that.
 
-### `npm start`
+Steps:
+1. Install Eslint Globally
+npm i -g eslint
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+2. Open your create-react-app react project or create one by typing
+npx create-react-app name-of-project
+(needs npm 5.2+)
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+3. Initiate Eslint in your project:
+eslint --init
+(answer the questions)
 
-### `npm test`
+4. Confirm installation of eslint-plugin-react
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+5. Leave this in your ESlint config:
+ "env": {
+  "browser": true,
+  "es6": true
+ },
+ "extends": ["eslint:recommended"],
+ "plugins": ["react"],
+ "parserOptions": {
+  "ecmaVersion": 2018
+ },
+ "rules": {}
 
-### `npm run build`
+6.  Install eslint-config-react-app peer dependencies:
+npx install-peerdeps --dev eslint-config-react-app
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+7. Install prettier dependencies:
+npm i -D eslint-config-prettier eslint-plugin-prettier prettier
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+8. Configure Prettier through ESlint example: 
+{
+  "env": {
+    "browser": true,
+    "es6": true
+  },
+  "extends": ["react-app", "prettier"],
+  "plugins": ["react", "prettier"],
+  "parserOptions": {
+    "ecmaVersion": 2018
+  },
+  "rules": {
+    "prettier/prettier": [
+      "error",
+      {
+        "printWidth": 80,
+        "trailingComma": "es5",
+        "semi": false,
+        "jsxSingleQuote": true,
+        "singleQuote": true,
+        "useTabs": true
+      }
+    ]
+  }
+}
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+9. Change your VScode settings 
+"eslint.autoFixOnSave": true
 
-### `npm run eject`
+10. Check for conflicting rules with the following:
+{
+  "scripts": {
+    "eslint-check": "eslint --print-config path/to/main.js | eslint-config-prettier-check"
+  }
+}
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+# ReactEslintPrettierSetUp
